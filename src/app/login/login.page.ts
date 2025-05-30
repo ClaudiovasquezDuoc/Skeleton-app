@@ -8,6 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginPage implements OnInit {
 
+  ingresar() {
+    
+  }
   constructor() { }
 
   ngOnInit() {
