@@ -1,19 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
-  standalone: false
+  standalone: false,
 })
-export class LoginPage implements OnInit {
+export class LoginPage {
+  usuario: string = '';
+  contrasena: string = '';
+
+  constructor(private router: Router) {}
 
   ingresar() {
-    
-  }
-  constructor() { }
-
-  ngOnInit() {
+    if (this.usuario && this.contrasena) {
+      localStorage.setItem('usuario', this.usuario);
+      this.router.navigate(['/home']);
+    } else {
+      alert('Ingrese usuario y contraseña');
+    }
   }
 
 }
