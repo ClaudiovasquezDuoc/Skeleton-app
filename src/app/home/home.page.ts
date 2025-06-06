@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { DatosModalComponent } from './modal.component';
+import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -16,7 +18,9 @@ export class HomePage implements OnInit {
   nivelEducacion: string = '';
   fechaNacimiento: string = '';
 
-  constructor(private modalController: ModalController) {}
+  constructor(
+    private modalController: ModalController,
+    private router: Router) {}
 
   ngOnInit() {
     this.usuario = localStorage.getItem('usuario') || '';
@@ -27,6 +31,9 @@ export class HomePage implements OnInit {
     this.apellido = '';
     this.nivelEducacion = '';
     this.fechaNacimiento = '';
+  }
+    irAlmenuUser(){
+    this.router.navigate(['/menu-user']);
   }
 
   async mostrar() {
@@ -42,4 +49,22 @@ export class HomePage implements OnInit {
     });
     await modal.present();
   }
-}
+  botonEstado: 'guardar' | 'siguiente' = 'guardar';
+
+  avanMenu() {
+    if (this.botonEstado === 'guardar') {
+      // Guardar datos
+      const usuarioData = {
+        nombre: this.nombre,
+        apellido: this.apellido,
+        nivelEducacion: this.nivelEducacion,
+        fechaNacimiento: this.fechaNacimiento
+      };
+      localStorage.setItem('usuarioData', JSON.stringify(usuarioData));
+      this.botonEstado = 'siguiente';
+    } else if (this.botonEstado === 'siguiente') {
+      // Navegar a menu-user
+      this.router.navigate(['/menu-user']);
+    }
+  }
+  }

@@ -67,13 +67,31 @@
       <ion-col size="2" class="ion-text-right">
         <ion-button (click)="mostrar()" type="submit" expand="block" fill="solid" color="dark">Mostrar</ion-button>
       </ion-col>
-      <ion-col size="4"></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12" class="boton-centro" >
+        <ion-button 
+          expand="block" 
+          color="dark"
+          (click)="avanMenu()">
+          <ng-container *ngIf="botonEstado === 'guardar'">
+            <ion-icon slot="start" name="save-outline"></ion-icon>
+            Guardar
+          </ng-container>
+          <ng-container *ngIf="botonEstado === 'siguiente'">
+            <ion-icon slot="start" name="arrow-forward-outline"></ion-icon>
+            Siguiente
+          </ng-container>
+        </ion-button>
+      </ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>
 <ion-footer>
   <ion-toolbar>
+
     <ion-title>App desarrollada por Claudio Vasquez</ion-title>
+
   </ion-toolbar>
 </ion-footer>
 

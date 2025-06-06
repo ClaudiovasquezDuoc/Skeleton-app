@@ -22,7 +22,11 @@ const routes: Routes = [
   {
     path: 'acerca',
     loadChildren: () => import('./acerca/acerca.module').then( m => m.AcercaPageModule)
+  },  {
+    path: 'menu-user',
+    loadChildren: () => import('./menu-user/menu-user.module').then( m => m.MenuUserPageModule)
   },
+
 ];
 
 @NgModule({
